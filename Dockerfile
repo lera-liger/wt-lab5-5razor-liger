@@ -1,6 +1,8 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+ENV DOTNET_EnableWriteXorExecute=0
+
 COPY *.csproj ./
 RUN dotnet restore
 
