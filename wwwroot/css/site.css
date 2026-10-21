@@ -1,0 +1,152 @@
+/* Шрифты */
+@font-face {
+    font-family: 'Urfa';
+    src: url('../fonts/Urfa-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Urfa';
+    src: url('../fonts/Urfa-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Urfa';
+    src: url('../fonts/Urfa-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Фирменный цвет */
+:root {
+    --university-color: #182C7F;
+    --bs-primary: #182C7F;
+    --bs-primary-rgb: 24, 44, 127;
+}
+
+.text-university {
+    color: #182C7F !important;
+}
+
+.btn-primary {
+    --bs-btn-bg: #182C7F;
+    --bs-btn-border-color: #182C7F;
+    --bs-btn-hover-bg: #131F5C;
+    --bs-btn-hover-border-color: #131F5C;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #182C7F;
+    --bs-btn-border-color: #182C7F;
+    --bs-btn-hover-bg: #182C7F;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0.75rem 1.5rem rgba(24, 44, 127, 0.15) !important;
+    }
+
+/* Hover-эффект для карточек */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0.75rem 1.5rem rgba(24, 44, 127, 0.15) !important;
+    }
+
+/* Кнопки */
+.btn {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+/* Бейджи */
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.7em;
+}
+
+/* ===== Единый стиль ===== */
+
+:root {
+    --university-color: #182C7F;
+    --bs-primary: #182C7F;
+    --bs-primary-rgb: 24, 44, 127;
+}
+
+body {
+    font-family: 'Urfa', 'Segoe UI', sans-serif;
+    font-weight: 300;
+    background-color: #f8f9fa; /* Легкий фон для всего сайта */
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.nav-link {
+    font-weight: 400;
+}
+
+    .nav-link:hover {
+        color: #182C7F !important;
+    }
+
+/* Карточки */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 1rem;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0.75rem 1.5rem rgba(24, 44, 127, 0.15) !important;
+    }
+
+/* Заголовки */
+h1, h2, h3 {
+    font-family: 'Urfa', sans-serif;
+    font-weight: 600; /* SemiBold — заголовки */
+}
+
+h4, h5, h6, .lead {
+    font-family: 'Urfa', sans-serif;
+    font-weight: 400; /* Regular — подзаголовки */
+}
+
+.btn, .navbar-brand {
+    font-family: 'Urfa', sans-serif;
+    font-weight: 400;
+}
+
+/* Кнопки */
+.btn {
+    transition: transform 0.15s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+/* Футер */
+.footer {
+    font-size: 0.9rem;
+}

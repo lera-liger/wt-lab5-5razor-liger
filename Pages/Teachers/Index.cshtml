@@ -1,0 +1,78 @@
+﻿@page
+@model wt_lab5_5razor_liger.Pages.Teachers.IndexModel
+
+@{
+    ViewData["Title"] = "Преподаватели";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <div>
+            <h1 class="fw-bold text-university mb-1">
+                <i class="bi bi-person-workspace"></i> Преподаватели
+            </h1>
+            <p class="text-muted mb-0">Всего: @Model.Teachers.Count</p>
+        </div>
+        <a asp-page="/Teachers/Create" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Добавить преподавателя
+        </a>
+    </div>
+
+    @if (Model.Teachers.Count == 0)
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> Список преподавателей пуст.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var teacher in Model.Teachers)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm rounded-4 border-0">
+                        <div class="card-body d-flex flex-column">
+
+                            <span class="badge bg-secondary mb-2 align-self-start">
+                                ID: @teacher.Id
+                            </span>
+
+                            <h5 class="card-title">@teacher.FullName</h5>
+
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-building"></i> @teacher.Department
+                            </p>
+
+                            <p class="mb-2">
+                                <i class="bi bi-clock-history"></i>
+                                Стаж: @teacher.ExperienceYears лет
+                            </p>
+
+                            <p class="mb-3">
+                                <span class="badge @(teacher.HasDegree ? "bg-success" : "bg-secondary")">
+                                    @(teacher.HasDegree ? "Есть степень" : "Без степени")
+                                </span>
+                            </p>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-page="./Details" asp-route-id="@teacher.Id"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-eye"></i> Подробнее
+                                </a>
+
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@teacher.Id"
+                                      onsubmit="return confirm('Удалить преподавателя @teacher.FullName?');"
+                                      class="d-inline">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Удалить
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

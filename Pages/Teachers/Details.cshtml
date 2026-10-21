@@ -1,0 +1,76 @@
+﻿@page
+@model wt_lab5_5razor_liger.Pages.Teachers.DetailsModel
+
+@{
+    ViewData["Title"] = "Информация о преподавателе";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm rounded-4 border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0 text-university">
+                            <i class="bi bi-person-badge"></i>
+                            Информация о преподавателе
+                        </h2>
+                        @if (Model.Teacher!.HasDegree)
+                        {
+                            <span class="badge bg-success fs-6">Есть учёная степень</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary fs-6">Без степени</span>
+                        }
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4"><i class="bi bi-hash text-muted"></i> ID</dt>
+                        <dd class="col-sm-8">@Model.Teacher.Id</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-person text-muted"></i> ФИО</dt>
+                        <dd class="col-sm-8">@Model.Teacher.FullName</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-building text-muted"></i> Кафедра</dt>
+                        <dd class="col-sm-8">@Model.Teacher.Department</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-clock-history text-muted"></i> Стаж</dt>
+                        <dd class="col-sm-8">@Model.Teacher.ExperienceYears лет</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-mortarboard text-muted"></i> Учёная степень</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.Teacher.HasDegree)
+                            {
+                                <span class="badge bg-success">Да</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Нет</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <hr />
+
+                    <div class="d-flex gap-2">
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Назад к списку
+                        </a>
+
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Teacher.Id"
+                              onsubmit="return confirm('Удалить преподавателя @Model.Teacher.FullName?');">
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Удалить
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

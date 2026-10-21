@@ -1,0 +1,82 @@
+﻿@page
+@model wt_lab5_5razor_liger.Pages.Students.IndexModel
+
+@{
+    ViewData["Title"] = "Студенты";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <div>
+            <h1 class="fw-bold text-university mb-1">
+                <i class="bi bi-people-fill"></i> Студенты
+            </h1>
+            <p class="text-muted mb-0">Всего: @Model.Students.Count</p>
+        </div>
+        <a asp-page="/Students/Create" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Добавить студента
+        </a>
+    </div>
+
+    @if (Model.Students.Count == 0)
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> Список студентов пуст.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var student in Model.Students)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm rounded-4 border-0">
+                        <div class="card-body d-flex flex-column">
+
+                            <span class="badge bg-secondary mb-2 align-self-start">
+                                ID: @student.Id
+                            </span>
+
+                            <h5 class="card-title">@student.FullName</h5>
+
+                            <p class="mb-2">
+                                <i class="bi bi-award"></i> <strong>@student.Specialty</strong>
+                            </p>
+
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-book"></i> @student.Course курс
+                            </p>
+
+                            <p class="mb-2">
+                                <span class="badge @(student.IsEnrolled ? "bg-success" : "bg-secondary")">
+                                    @(student.IsEnrolled ? "Зачислен" : "Не зачислен")
+                                </span>
+                            </p>
+
+                            <p class="fs-5 fw-bold text-university mb-3">
+                                <i class="bi bi-star"></i> @student.AverageGrade
+                            </p>
+
+                            <!-- Кнопки действий -->
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-page="./Details" asp-route-id="@student.Id"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-eye"></i> Подробнее
+                                </a>
+
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@student.Id"
+                                      onsubmit="return confirm('Удалить студента @student.FullName?');"
+                                      class="d-inline">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Удалить
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

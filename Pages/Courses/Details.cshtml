@@ -1,0 +1,69 @@
+﻿@page
+@model wt_lab5_5razor_liger.Pages.Courses.DetailsModel
+
+@{
+    ViewData["Title"] = "Информация о курсе";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm rounded-4 border-0">
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0 text-university">
+                            <i class="bi bi-journal-bookmark-fill"></i>
+                            Информация о курсе
+                        </h2>
+                        <span class="badge bg-primary fs-6">@Model.Course!.Semester семестр</span>
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4"><i class="bi bi-hash text-muted"></i> ID</dt>
+                        <dd class="col-sm-8">@Model.Course.Id</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-journal-text text-muted"></i> Название</dt>
+                        <dd class="col-sm-8">@Model.Course.Title</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-calendar3 text-muted"></i> Семестр</dt>
+                        <dd class="col-sm-8">@Model.Course.Semester</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-clock text-muted"></i> Часы</dt>
+                        <dd class="col-sm-8">@Model.Course.Hours</dd>
+
+                        <dt class="col-sm-4"><i class="bi bi-person-workspace text-muted"></i> Преподаватель</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.TeacherName))
+                            {
+                                <span>@Model.TeacherName</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Не назначен</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <hr />
+
+                    <div class="d-flex gap-2">
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Назад к списку
+                        </a>
+
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Course.Id"
+                              onsubmit="return confirm('Удалить курс @Model.Course.Title?');">
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Удалить
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
